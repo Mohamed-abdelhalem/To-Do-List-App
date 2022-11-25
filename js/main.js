@@ -1,14 +1,15 @@
   // input title of project
-          let candidate = document.getElementById('candidate');
-          // input discribtion of project
-          let candidate2 = document.getElementById('candidate2');
-          // input date of project
-          let candidate3 = document.getElementById('candidate3');
-          // input time of project
-          let candidate4 = document.getElementById('candidate4');
-          let all_Projects = document.getElementById('allProjects');
-          let my_project = document.getElementsByClassName('my-project');
+let candidate = document.getElementById('candidate');
+// input discribtion of project
+let candidate2 = document.getElementById('candidate2');
+// input date of project
+let candidate3 = document.getElementById('candidate3');
+// input time of project
+let candidate4 = document.getElementById('candidate4');
+let all_Projects = document.getElementById('allProjects');
+let my_project = document.getElementsByClassName('my-project');
 let allTasks = [];
+let deltasks = [];
 if (localStorage.task != null)
 {
     allTasks = JSON.parse(localStorage.task);
@@ -16,6 +17,14 @@ if (localStorage.task != null)
 else
 {
     allTasks = [];
+}
+if (localStorage.dell != null)
+{
+    deltasks = JSON.parse(localStorage.dell);
+}
+else
+{
+    deltasks = [];
 }
 // Add Task
 function addItem()
@@ -87,7 +96,7 @@ function addItem()
             all_Projects.appendChild(my_project);
             */
             allTasks.push(newTask);
-            candidate.value = "";
+            candidate.value  = "";
             candidate2.value = "";
             candidate3.value = "";
             candidate4.value = "";
@@ -96,11 +105,11 @@ function addItem()
   showData();
 }
 
-
+showData();
 function showData()
 {
-    let tasks = '';
-    for (let i = 0 ; i < allTasks.length; i++)
+  let tasks = '';
+    for (let i = 0 ; i < allTasks.length ; i++)
     {
         tasks +=`
                 <div class="my-project">
@@ -115,15 +124,19 @@ function showData()
                         <div class="discribtion-project">
                             <p class="dis-project">${allTasks[i].discribtion}</p>
                         </div>
-                        <div class="time">
-                            <i class="far fa-clock">${allTasks[i].time}</i>
-                            <span class="time-d">${allTasks[i].date}</span>
+                        <div class="time d-flex flex-column ">
+                            <i class="far fa-clock "> ${allTasks[i].time}</i>
+                            <div class="my-1">
+                            <i class="fas fa-calendar-week me-1"></i> <span> ${allTasks[i].date}</span>
+                            </div>
+                            
                         </div>
                     </div>
                 `
-    }
+      document.getElementById('num-progress').innerHTML = i + 1;
+  }
+    document.getElementById('num-delete').innerHTML = deltasks.length;
     document.getElementById('allProjects').innerHTML = tasks;
-    
 }
 showData();
 $('.togel').click(function()
@@ -137,30 +150,59 @@ $('.togel2').click(function()
 function deleteData(i)
 {
     //console.log(i);
-    allTasks.splice(i, 1);
-    localStorage.task = JSON.stringify(allTasks);
-    showData();
+  let deTask =
+                {
+                name: allTasks[i].name,
+                discribtion: allTasks[i].discribtion,
+                date: allTasks[i].date,
+                time: allTasks[i].time
+  }
+  deltasks.push(deTask);
+  localStorage.setItem('dell', JSON.stringify(deltasks));
+  allTasks.splice(i, 1);
+  localStorage.task = JSON.stringify(allTasks);
+  document.getElementById('num-progress').innerHTML = (i + 1) - 1;
+  document.getElementById('num-delete').innerHTML = deltasks.length;
+  showData();
 }
-
-
- 
- 
-
-
-
-  
-  
-
-
-
-
-
-
-
-
-  
-   
-
-
-
-
+function showdelData()
+{
+  let stasks = '';
+  if (deltasks.length === 0) {
+    document.getElementById('allProjects').innerHTML = " NO AVAILABLE  DATA ";
+  }
+  else {
+    for (let i = 0; i < deltasks.length; i++) {
+      stasks += `
+                <div class="my-project">
+                        <div class="header-project">
+                          <div class="name-projects">
+                            <p class="project-name">${deltasks[i].name}</p>
+                          </div>
+                          <div class="options">
+                            <i class="fas fa-trash-alt" onclick="deletedelData(${i})"></i>
+                          </div>
+                        </div>
+                        <div class="discribtion-project">
+                            <p class="dis-project">${deltasks[i].discribtion}</p>
+                        </div>
+                        <div class="time d-flex flex-column">
+                            <i class="far fa-clock "> ${deltasks[i].time}</i>
+                            <span> ${deltasks[i].date}</span>
+                            
+                        </div>
+                    </div>
+                `;
+    }
+    
+    document.getElementById('allProjects').innerHTML = stasks;
+  }
+}
+function deletedelData(i)
+{
+    //console.log(i);
+  deltasks.splice(i, 1);
+  localStorage.dell = JSON.stringify(deltasks);
+  document.getElementById('num-delete').innerHTML = (i + 1) - 1;
+  showdelData();
+}

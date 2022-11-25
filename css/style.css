@@ -7,65 +7,12 @@ body{margin: 0; padding: 0; }
 .fa-cogs{color:gold;}
 .fa-chart-line{color: purple ;}
 .fa-calendar-week {color: maroon ;}
+.time .fa-calendar-week {color: white;}
 .fa-archive {color: yellowgreen ;}
 .fa-search , .fa-bell { color : #777; background-color: #ddd; padding: 10px; border-radius: 50%; position: relative;}
 .fa-bell span {position: absolute; background: red; color: white; padding: 5px; border-radius: 50%; top: -12px; right: -5px;}
 .fa-trash-alt{  color: red ;  font-size: 20px;}
 /* end global */
-/* .btn-add
-{
-  width: 200px;
-  height: 100px;
-  background-color: red;
-  font-size: 30px;
-  display: inline-block;
-}
-.btn-remove
-{
-  width: 200px;
-  height: 100px;
-  background-color: red;
-  font-size: 30px;
-  display: inline-block;
-}
-.newDiv{
-  width: 100px;
-  height: 100px;
-  box-shadow: 0 0 1px 1px #ddd;
-}
-
-#fri
-{
-  background-color: red;
-}
-#sat
-{
-  background-color: blue;
-}
-#sun
-{
-  background-color: yellow;
-}
-#wed
-{
-background-color: green;
-}
-#mon{
-background-color: orange;
-}
-
-.moo
-{
-  width: 100px;
-  height: 100px;
-  background: red;
-
-}
-.jj
-{
-  display: none;
-} */
-
 /** start dashboard **/
 #dashboard {
   position: fixed;
@@ -159,14 +106,11 @@ background-color: orange;
   font-weight: 400;
 }
 /** end My-page **/
-
-
 @media (max-width: 1199px)
 {
   #dashboard {  left: -300px; }
   .my-page {margin-left: 0;}
- }
-
+}
 .add-projects
 {
   width: 75%;

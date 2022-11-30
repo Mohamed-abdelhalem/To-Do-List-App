@@ -5,9 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- main Style & bootstrap -->
     <link rel="stylesheet" href="css/bootstrap.css" />
+    <link rel="stylesheet" href="css/bootstrap.css.map" />
     <link rel="stylesheet" href="css/style.css">
     <!-- for fontawesome -->
-    <script  src="https://kit.fontawesome.com/6a274a2379.js"crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/6a274a2379.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" 
+          integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" 
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- icon -->
     <link rel="icon" href="imgs/check list.png">
     <title> To Do Tasks</title>
@@ -72,16 +76,16 @@
           <label for="" class="text-white my-1 fs-4 "> Project Name : </label>
           <input type="text" name="" value="" id="candidate" class="rounded-3" placeholder="Add Your Project Name" required>
 
-          <label for="" class="text-white my-1 fs-4"> Project Discribtion :</label>
+          <label for="" class="text-white my-1 fs-4"> Project Description :</label>
           <textarea name="" rows="3" cols="80" id="candidate2" class="rounded-3" placeholder="Add Your Project Discribtion" required></textarea>
 
           <label for="" class="text-white my-1 fs-4"> Project Date :</label>
-          <input type="date" name="" value="" id="candidate3" class="rounded-3" placeholder="Add Your Project Date" required>
+          <input type="date" name="" value="" id="candidate3" class="rounded-3" required>
 
           <label for="" class="text-white my-1 fs-4"> Project Time :</label>
-          <input type="time" name="" value="" id="candidate4" class="rounded-3 mb-3" placeholder="Add Your Project Time" required>
+          <input type="time" name="" value="" id="candidate4" class="rounded-3 mb-3" required>
         </div>
-          <button type="button" class="btn btn-success mt-3"   onclick="addItem()"   > Add Project</button>
+          <button type="button" class="btn btn-success mt-3"   onclick="addItem()" > Add Project</button>
     </div>
   <!-- end model -->
   <!-- start Page-->
@@ -115,7 +119,7 @@
            <div class="container ">
              <div class="row my-4">
                <div class="col-lg-4 my-1">
-                    <div class="nxtUp d-flex justify-content-between align-items-center py-1 px-3 rounded-3">
+                    <div class="nxtUp d-flex justify-content-between align-items-center py-1 px-3 rounded-3" id="inprogress">
                                 <div class="status">
                                   <p class="m-0 fs-4 fw-bold" onclick="showData()"> In Progress</p>
                                 </div>
@@ -125,9 +129,9 @@
                     </div>
                </div>
                <div class="col-lg-4 my-1">
-                   <div class="inProgress d-flex justify-content-between align-items-center py-1 px-3 rounded-3">
+                   <div class="complete d-flex justify-content-between align-items-center py-1 px-3 rounded-3" id="complete">
                                <div class="status">
-                                 <p class="m-0 fs-4 fw-bold"> Completed</p>
+                                 <p class="m-0 fs-4 fw-bold" onclick="showCompleteData()"> Completed</p>
                                </div>
                                <div class="number">
                                   <span id="num-complete"> 0 </span>
@@ -135,7 +139,7 @@
                    </div>
                </div>
                <div class="col-lg-4 my-1">
-                  <div class="complete d-flex justify-content-between align-items-center py-1 px-3 rounded-3">
+                  <div class="complete d-flex justify-content-between align-items-center py-1 px-3 rounded-3" id="delete">
                               <div class="status">
                                 <p class="m-0 fs-4 fw-bold" onclick="showdelData()" > Deleted </p>
                               </div>
@@ -162,7 +166,10 @@
   </div>
   <!-- end Page-->
   <script src="js/jquery-3.2.1.min.js"></script>
-  <script src="js/main.js"></script>
   <script src="js/bootstrap.min.js"></script>
+  <script src="js/main.js"></script>
+  <!-- sweet alert js CDN  -->
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  
   </body>
 </html>

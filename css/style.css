@@ -1,6 +1,6 @@
 /* global */
 *{box-sizing: border-box;}
-body{margin: 0; padding: 0; }
+body{margin: 0; padding: 0;}
 #dashboard .person .person-img img , .my-page .search-noti img { width: 50px; height: 50px; border-radius: 50px; }
 .fa-check{color:green}
 .fa-heart{color:red;}
@@ -12,6 +12,16 @@ body{margin: 0; padding: 0; }
 .fa-search , .fa-bell { color : #777; background-color: #ddd; padding: 10px; border-radius: 50%; position: relative;}
 .fa-bell span {position: absolute; background: red; color: white; padding: 5px; border-radius: 50%; top: -12px; right: -5px;}
 .fa-trash-alt{  color: red ;  font-size: 20px;}
+.fa-trash-alt:hover,
+.fa-check:hover,
+svg:hover
+{
+  cursor: pointer;
+}
+svg{
+  width:  20px;
+  color: gold !important;
+}
 /* end global */
 /** start dashboard **/
 #dashboard {
@@ -20,7 +30,7 @@ body{margin: 0; padding: 0; }
   left: 0;
   bottom: 0;
   width: 300px;
-  z-index: 9997;
+  z-index: 100;
   background: #ddd;
   overflow-x: auto;
   box-shadow: 0 0 10px 1px #ddd;
@@ -53,10 +63,10 @@ body{margin: 0; padding: 0; }
 .my-page { margin-left: 300px; background-color: #dddddd38; z-index: 115646;}
 
 .discribtion p {color: #777;}
-.discribtion p span {color: blue;}
+.discribtion p span {color: darkgreen; cursor: pointer; font-size: 20px;}
 .nxtUp , .inProgress , .complete { background-color: #ddd;}
 .number {background-color: #000; color: white; width: 30px; text-align: center; border-radius: 3px;}
-.my-project , .mooo
+.my-project 
 {
   width: 300px;
   height: auto;
@@ -66,15 +76,20 @@ body{margin: 0; padding: 0; }
   position: relative;
   margin: 20px;
 }
+.status p:hover
+{
+ cursor: pointer;
+}
 .header-project
 {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
+
 .time
 {
-  background-color: orange;
+  background-color: gold;
   color: white;
   padding: 7px 10px;
   border-radius: 5px;
@@ -88,6 +103,7 @@ body{margin: 0; padding: 0; }
 {
   color: #ddd;
   font-size: 25px;
+ 
 }
 .name-projects p
 {
@@ -114,31 +130,44 @@ body{margin: 0; padding: 0; }
 .add-projects
 {
   width: 75%;
-  height: 75%;
+  height: auto;
   background-color: #333;
   border-radius: 10px;
-  z-index: 100000;
+  z-index: 1000;
   bottom:   12.5%;
   left: 12.5%;
   position: absolute;
   display: none;
 }
+
+.add-projects .fa-times:hover
+{
+ cursor: pointer;
+}
 @media (max-width: 767px)
 {
   .add-projects
   {
-    width: 100%;
-    height: 100%;
-    bottom:   0;
-    left: 0;
+    width: 85%;
+    height: 85%;
+    left: 7%;
+    top: 10%;
   }
 }
 
-.input
+input,
+textarea
 {
-
+  border: none;
   outline: none;
   box-shadow: 0 0 0 0 ;
+  padding-left: 5px;
+}
+input
+{
+  width: 100%;
+  height: 30px;
+  padding-left: 5px;
 }
 .input:focus
 {
@@ -147,9 +176,18 @@ body{margin: 0; padding: 0; }
 }
 .btn-success
 {
-  margin: 10px 45%
+  margin: 0 42%;
 }
 textarea
 {
   resize: none;
+}
+.swal-modal {
+  z-index: 999999;
+}
+.swal-button:focus
+{
+    border: 0;
+    outline: none;
+    box-shadow: none;
 }

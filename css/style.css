@@ -2,7 +2,7 @@
 *{box-sizing: border-box;}
 body{margin: 0; padding: 0;}
 #dashboard .person .person-img img , .my-page .search-noti img { width: 50px; height: 50px; border-radius: 50px; }
-.fa-check{color:green}
+.fa-check{color:green; cursor: pointer;}
 .fa-heart{color:red;}
 .fa-cogs{color:gold;}
 .fa-chart-line{color: purple ;}
@@ -11,16 +11,13 @@ body{margin: 0; padding: 0;}
 .fa-archive {color: yellowgreen ;}
 .fa-search , .fa-bell { color : #777; background-color: #ddd; padding: 10px; border-radius: 50%; position: relative;}
 .fa-bell span {position: absolute; background: red; color: white; padding: 5px; border-radius: 50%; top: -12px; right: -5px;}
-.fa-trash-alt{  color: red ;  font-size: 20px;}
-.fa-trash-alt:hover,
-.fa-check:hover,
-svg:hover
+.fa-trash-alt{  color: red ;  font-size: 20px; cursor: pointer;}
+.fa-trash-arrow-up { color: green;font-size: 20px; cursor: pointer;}
+svg
 {
-  cursor: pointer;
-}
-svg{
   width:  20px;
   color: gold !important;
+  cursor: pointer;
 }
 /* end global */
 /** start dashboard **/
@@ -61,7 +58,6 @@ svg{
 /*** end dashboard ***/
 /** start My-page **/
 .my-page { margin-left: 300px; background-color: #dddddd38; z-index: 115646;}
-
 .discribtion p {color: #777;}
 .discribtion p span {color: darkgreen; cursor: pointer; font-size: 20px;}
 .nxtUp , .inProgress , .complete { background-color: #ddd;}
@@ -76,17 +72,13 @@ svg{
   position: relative;
   margin: 20px;
 }
-.status p:hover
-{
- cursor: pointer;
-}
+.status p:hover{ cursor: pointer; }
 .header-project
 {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-
 .time
 {
   background-color: gold;
@@ -95,15 +87,11 @@ svg{
   border-radius: 5px;
   width: 170px;
 }
-#candidate2
-{
-  display: block;
-}
+#candidate2{ display: block; }
 .options
 {
   color: #ddd;
   font-size: 25px;
- 
 }
 .name-projects p
 {
@@ -111,10 +99,7 @@ svg{
   font-size: 20px;
   font-weight: bold;
 }
-.discribtion-project
-{
-  padding: 10px  ;
-}
+.discribtion-project  {  padding: 10px  ; }
 .discribtion-project p
 {
   margin: 0;
@@ -125,7 +110,7 @@ svg{
 @media (max-width: 1199px)
 {
   #dashboard {  left: -300px; }
-  .my-page {margin-left: 0;}
+  .my-page { margin-left: 0; }
 }
 .add-projects
 {
@@ -139,11 +124,7 @@ svg{
   position: absolute;
   display: none;
 }
-
-.add-projects .fa-times:hover
-{
- cursor: pointer;
-}
+.add-projects .fa-times:hover { cursor: pointer;  }
 @media (max-width: 767px)
 {
   .add-projects
@@ -154,7 +135,6 @@ svg{
     top: 10%;
   }
 }
-
 input,
 textarea
 {
@@ -174,17 +154,9 @@ input
   box-shadow: 0 0 0 0 ;
   outline: none;
 }
-.btn-success
-{
-  margin: 0 42%;
-}
-textarea
-{
-  resize: none;
-}
-.swal-modal {
-  z-index: 999999;
-}
+.btn-success { margin: 0 42%; }
+textarea {  resize: none;  }
+.swal-modal { z-index: 999999; }
 .swal-button:focus
 {
     border: 0;

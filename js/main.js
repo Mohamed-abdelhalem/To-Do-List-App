@@ -45,65 +45,8 @@ function addItem()
                   date: candidate3.value,
                   time: candidate4.value
                 }
-  /*
-          // container of all projects
-          let all_Projects = document.getElementById('allProjects');
-          // create trash & clock icons
-          let trash = document.createElement("i")
-          trash.className = "fas fa-trash-alt";
-          let clock = document.createElement("i")
-          clock.className = "far fa-clock";
-          // function to delete the task 
-          trash.onclick  = function () {      all_Projects.removeChild(my_project);    };
-
-          // project content
-          let my_project = document.createElement("div");
-          my_project.className = "my-project";
-          // project header
-          let header_project = document.createElement("div");
-          header_project.className = "header-project";
-          // name of project inside project header project
-          let name_projects = document.createElement("div");
-          name_projects.className = "name-projects";
-          // append (div name_projects) inside (header_project div)
-          header_project.appendChild(name_projects);
-          header_project.appendChild(trash);
-          // title of project inside name of project
-          let project_name = document.createElement("p");
-          project_name.className = "project-name";
-          // append (div project_name) inside (name_projects div)
-          name_projects.appendChild(project_name)
-          let title = document.createTextNode(candidate.value);
-          // container Describtion project
-          let discribtion_project = document.createElement("div");
-          discribtion_project.className = "discribtion-project";
-          // content of discribtion project inside (container discribtion project)
-          let dis_project = document.createElement("p");
-          dis_project.className = "dis-project";
-          let discribtion = document.createTextNode(candidate2.value);
-          dis_project.appendChild(discribtion);
-          // append (P dis_project) inside (discribtion_projects div)
-          discribtion_project.appendChild(dis_project);
-          // Time of project
-          let time = document.createElement("div");
-          time.className = "time";
-          // content time of project inside time
-          let span = document.createElement("span");
-          span.className = "time-d";
-          let timefull = document.createTextNode(candidate4.value);
-          span.appendChild(timefull);
-          time.appendChild(span);
-          my_project.setAttribute('id' , candidate.value);
-*/
           if (candidate.value != '' && candidate2.value != ''  && candidate3.value != '' && candidate4.value !='')
           {
-            /*
-            project_name.appendChild(title);
-            my_project.appendChild(header_project);
-            my_project.appendChild(discribtion_project);
-            my_project.appendChild(time);
-            all_Projects.appendChild(my_project);
-            */
             allTasks.push(newTask);
             swal({
                     title: "Successfully",
@@ -136,6 +79,9 @@ function showData()
   document.getElementById('delete').style.backgroundColor = "#ddd";
   document.getElementById('complete').style.backgroundColor = "#ddd";
   document.getElementById('inprogress').style.backgroundColor = "gold";
+  document.getElementById('dlt').style.color = "#000";
+  document.getElementById('comp').style.color = "#000";
+  document.getElementById('progs').style.color = "#fff";
 
   let tasks = '';
     for (let i = 0 ; i < allTasks.length ; i++)
@@ -217,13 +163,15 @@ function deleteData(i)
             swal("Your task is safe !");
             }
         });
-
-    }        
+}        
 function showdelData()
 {
   document.getElementById('delete').style.backgroundColor = "red";
   document.getElementById('complete').style.backgroundColor = "#ddd";
   document.getElementById('inprogress').style.backgroundColor = "#ddd";
+  document.getElementById('dlt').style.color = "#fff";
+  document.getElementById('comp').style.color = "#000";
+  document.getElementById('progs').style.color = "#000";
   let stasks = '';
   if (deltasks.length === 0) {
     document.getElementById('allProjects').innerHTML = " UN-AVAILABLE  DATA ";
@@ -237,6 +185,7 @@ function showdelData()
                             <p class="project-name">${deltasks[i].name}</p>
                           </div>
                           <div class="options">
+                            <i class="fa-solid fa-trash-arrow-up mx-1" onclick="restoredelData(${i})"></i>
                             <i class="fas fa-trash-alt" onclick="deletedelData(${i})"></i>
                           </div>
                         </div>
@@ -280,15 +229,50 @@ function deletedelData(i)
             }
         });
 }
+function restoredelData(i)
+{
+   //console.log(i);
+  let restoreTask =
+                {
+                name: deltasks[i].name,
+                discribtion: deltasks[i].discribtion,
+                date: deltasks[i].date,
+                time: deltasks[i].time
+  }
+  swal({
+    title: "Are you sure ?",
+    text: "Your task will restored to the progress tasks !",
+    icon: "warning",
+    buttons: true,
+    dangerMode: true,
+  })
+    .then((willDelete) =>
+    {
+      if (willDelete)
+      {
+        allTasks.push(restoreTask);
+        deltasks.splice(i, 1);
+        localStorage.dell = JSON.stringify(deltasks);
+        localStorage.task = JSON.stringify(allTasks);
+        document.getElementById('num-progress').innerHTML = (i + 1) + 1;
+        document.getElementById('num-delete').innerHTML = deltasks.length;
+        showData();
+      }
+      else
+            {
+            swal(" Your task is still in the trash !");
+            }
+        });
+}
 
 function updateData(i)
 {
-    console.log(i);
+  console.log(i);
   candidate.value  = allTasks[i].name;
   candidate2.value = allTasks[i].discribtion;
   candidate3.value = allTasks[i].date;
   candidate4.value = allTasks[i].time;
-    $('.add-projects').fadeIn();
+  $('.add-projects').fadeIn();
 }
 
 
@@ -308,6 +292,12 @@ function completeData(i)
   localStorage.task = JSON.stringify(allTasks);
   document.getElementById('num-progress').innerHTML = (i + 1) - 1;
   document.getElementById('num-complete').innerHTML = completetasks.length;
+  swal({
+        title: "Successfully",
+        text: "Your Task has been Completed",
+        icon: "success",
+        button: "Ok",
+      });
   showData();
 }
 function showCompleteData()
@@ -315,6 +305,9 @@ function showCompleteData()
   document.getElementById('delete').style.backgroundColor = "#ddd";
   document.getElementById('complete').style.backgroundColor = "green";
   document.getElementById('inprogress').style.backgroundColor = "#ddd";
+  document.getElementById('dlt').style.color = "#000";
+  document.getElementById('comp').style.color = "#fff";
+  document.getElementById('progs').style.color = "#000";
   let comptasks = '';
   if (completetasks.length === 0) {
     document.getElementById('allProjects').innerHTML = " UN-AVAILABLE  DATA ";
@@ -349,26 +342,25 @@ function showCompleteData()
 function deletecompleteData(i)
 {
     //console.log(i);
+  swal({
+    title: "Are you sure ?",
+    text: "Once deleted, you will be not able to recover this task again !",
+    icon: "warning",
+    buttons: true,
+    dangerMode: true,
+  })
+    .then((willDelete) =>
+    {
+      if (willDelete)
+      {
   completetasks.splice(i, 1);
   localStorage.complete = JSON.stringify(completetasks);
   document.getElementById('num-complete').innerHTML = (i + 1) - 1;
-  showCompleteData();
+        showCompleteData();
+        }
+      else
+            {
+            swal("Your task in the completed section !");
+            }
+        });
 }
-/*
-for (let i = 0; i < allTasks.length; i++)
-{
-  let today = new Date(),
-      month = today.getMonth() + 1,
-      year  = today.getFullYear(),
-      date  = today.getDate(),
-      day   = today.getDay(),
-      hours = today.getHours(),
-      minutes = today.getMinutes();
-
-  if (hours > allTasks[i].time)
-  {
-    allTasks.splice(i, 1);
-    localStorage.task = JSON.stringify(allTasks);
-  }
-  showData();
-}*/
